@@ -6,7 +6,6 @@ from .serializers import UserSerializer,RegisterSerializer
 User = get_user_model()
 
 
-# --- REGISTER VIEW ---
 class RegisterView(generics.CreateAPIView):
     """
     Publicly accessible.
@@ -25,3 +24,4 @@ class ProfileView(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
+

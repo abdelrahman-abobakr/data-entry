@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV /home/abdallrhman/Abdelrahman/work/frappy-task/venv
+set -gx VIRTUAL_ENV /home/abdallrhman/Abdelrahman/work/data-entry/frappy-task/venv
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH

@@ -10,6 +10,12 @@ class Entry(models.Model):
         ('REJECTED', 'Rejected'),
     ]
 
+    CATEGORY_CHOICES = [
+        ('PERSONAL', 'Personal'),
+        ('WORK', 'Work'),
+        ('EDUCATION', 'Education'),
+    ]
+
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -19,6 +25,7 @@ class Entry(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     entry_date = models.DateField()
     description = models.TextField(blank=True, null=True)
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='PERSONAL')
 
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='PENDING')
     approved_by = models.ForeignKey(

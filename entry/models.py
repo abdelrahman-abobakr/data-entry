@@ -21,7 +21,7 @@ class Entry(models.Model):
         on_delete=models.CASCADE,
         related_name='entries'
     )
-
+    title = models.CharField(max_length=100, default='New Entry')
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     entry_date = models.DateField()
     description = models.TextField(blank=True, null=True)

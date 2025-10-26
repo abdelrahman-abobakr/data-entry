@@ -28,23 +28,28 @@ Manages data entries with approval workflow.
 
 #### Models
 - **Entry**: Main model for data entries
-  - Fields: user (FK), amount, entry_date, description, category (PERSONAL/WORK/EDUCATION), status (PENDING/APPROVED/REJECTED), approved_by, approved_at, rejection_reason
+  - Fields: user (FK), title, amount, entry_date, description, category (PERSONAL/WORK/EDUCATION), status (PENDING/APPROVED/REJECTED), approved_by, approved_at, rejection_reason
   - Validation: Amount > 0, date not in future, no duplicate entries per day per user
 
 #### Views
 - **EntryViewSet**: ModelViewSet with custom permissions and actions
   - Admins see all entries, users see only their own
   - Custom actions: approve, reject (admin only)
+  - Filtering: By status and category using DjangoFilterBackend
+  - Search: By title and description
+  - Ordering: By created_at (default descending)
+  - Pagination: Applied by default (DRF's default pagination for list views)
 
 #### Endpoints
-- `GET /api/entry/entry/` - List entries (filtered by user role)
+- `GET /api/entry/entry/` - List entries (filtered by user role, paginated, supports filtering by status/category, search by title/description, ordering by created_at)
+  - Query parameters: `status`, `category`, `search`, `ordering`
 - `POST /api/entry/entry/` - Create new entry
 - `GET /api/entry/entry/{id}/` - Retrieve specific entry
 - `PUT /api/entry/entry/{id}/` - Update entry
 - `PATCH /api/entry/entry/{id}/` - Partial update entry
 - `DELETE /api/entry/entry/{id}/` - Delete entry
 - `POST /api/entry/entry/{id}/approve/` - Approve entry (admin only)
-- `POST /api/entry/entry/{id}/reject/` - Reject entry (admin only, requires rejection_reason)
+- `POST /api/entry/entry/{id}/reject/` - Reject entry (admin only, requires rejection_reason in request body)
 
 ## Authentication & Authorization
 - JWT-based authentication using `rest_framework_simplejwt`

@@ -68,4 +68,4 @@ class EntryViewSet(viewsets.ModelViewSet):
         entry.approved_at = timezone.now()
         entry.rejection_reason = rejection_reason
         entry.save()
-        return Response(self.get_serializer(entry))
+        return Response(self.get_serializer(entry).data)

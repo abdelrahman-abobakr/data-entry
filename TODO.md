@@ -1,0 +1,2 @@
+- [x] Add @extend_schema to approve and reject actions in entry/views.py for proper drf-spectacular documentation
+- [ ] Test the updated documentation at /api/docs/swagger/
